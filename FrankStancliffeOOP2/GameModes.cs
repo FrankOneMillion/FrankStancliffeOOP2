@@ -88,6 +88,12 @@ namespace FrankStancliffeOOP2
             }
             return points;
         }
+
+        /// <summary>
+        /// used in ThreeOrMore class to calculate number of matching / of-a-kind
+        /// </summary>
+        /// <param name="arrayOfDieRolls">array containing the rolls from the 5 die</param>
+        /// <returns>array for count of each possible roll</returns>
         private int[] checkForMultiples(int[] arrayOfDieRolls) 
         {
             int[] rollOptions = { 0, 0, 0, 0, 0, 0 };
@@ -103,7 +109,10 @@ namespace FrankStancliffeOOP2
             }
             return rollOptions;
         }
-
+        /// <summary>
+        /// creates 2 new die objects and rolls them
+        /// </summary>
+        /// <returns>array containing the two rolled values</returns>
         public int[] Roll5Die()
         {
             DieRoller die1 = new DieRoller();
@@ -111,6 +120,11 @@ namespace FrankStancliffeOOP2
             int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()) };
             return arrayOfDieRolls;
         }
+
+        /// <summary>
+        /// creates 5 new die objects and rolls them
+        /// </summary>
+        /// <returns>array containing the five rolled die values</returns>
         public int[] Roll2Die()
         {
             DieRoller die1 = new DieRoller();
