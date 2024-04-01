@@ -13,11 +13,18 @@ namespace FrankStancliffeOOP2
     {
         static void Main(string[] args)
         {
-            int play = 1;
-            //while (play == 1)
+            Testing testing = new Testing();
+            //string[] arrayChoices = { "Yes", "No" };
+            //int quit = testing.Checker("would you like to continue?", arrayChoices);
+
+            //string[] arrayChoices = { "Three or More", "Sevens Out" };
+            string[] arrayChoices = { "Partner", "Computer" };
+            int quit = testing.Checker("Play with partner(on the same computer), or against the computer.", arrayChoices);
+            //int quit = testing.Checker("would you like to continue?", arrayChoices);
+            //while (quit != 1)
             //{
 
-           // }
+            // }
             GameModes newGame = new GameModes();
             int[] points = { 0, 0 };
             points = newGame.SevensOut(points);

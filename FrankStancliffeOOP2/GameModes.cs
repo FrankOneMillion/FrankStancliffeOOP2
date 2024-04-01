@@ -21,19 +21,34 @@ namespace FrankStancliffeOOP2
         //	4-of-a-kind: 6 points
         //	5-of-a-kind: 12 points
         //    First to a total of 20.
+
+        /// <summary>
+        /// rolls 5 die for each player, finds the biggest nu 
+        /// </summary>
+        /// <param name="points">array holding int values for each players current point count</param>
+        /// <returns>array for number of points each player holds</returns>
         public int[] ThreeOrMore(int[] points) 
         {
             int turn = 0;
-            int[] arrayOfDieRolls = Roll5Die();
-            int [] rollOptions = checkForMultiples(arrayOfDieRolls);
-            int biggestOfAKind = 0;
-            for (int i = 0; i < rollOptions.Length; i++) 
+            int rolled = 0;
+            while (rolled != 1)
             {
-                if (rollOptions[i] > biggestOfAKind) { biggestOfAKind = rollOptions[i]; }
+                int[] arrayOfDieRolls = Roll5Die();
+                int[] rollOptions = checkForMultiples(arrayOfDieRolls);
+                int biggestOfAKind = 0;
+                for (int i = 0; i < rollOptions.Length; i++)
+                {
+                    if (rollOptions[i] > biggestOfAKind) { biggestOfAKind = rollOptions[i]; }
+                }
+                if (biggestOfAKind != 2) { rolled = 1; }
+                else
+                {
+                    // Console.WriteLine("Hey you rolled 2 of-a-kind would you like to ReRoll?:")
+                    // rolled = checker(["Yes","No"])
+                }
             }
-            if (biggestOfAKind != 2) { }
             return points;
-        }
+        }  
 
         //2 x dice
         //Rules:
@@ -41,6 +56,7 @@ namespace FrankStancliffeOOP2
         //	If it is a 7 - stop.
         //	If it is any other number - add it to your total.
         //		If it is a double - add double the total to your score (3,3 would add 12 to your total)
+
         public int[] SevensOut(int[] points) 
         {
             int turn = 0;
