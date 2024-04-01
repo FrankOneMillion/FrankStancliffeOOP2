@@ -12,9 +12,9 @@ namespace FrankStancliffeOOP2
         private int _rollValue;
 
         /// <summary>
-        /// 
+        /// rolls a int value between 1 and 6
         /// </summary>
-        /// <returns></returns>
+        /// <returns>int between 1 andd 6</returns>
         public int Roll()
         {
             _rollValue = random.Next(1,7);
