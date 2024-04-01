@@ -13,7 +13,6 @@ namespace FrankStancliffeOOP2
     /// </summary>
     internal class GameModes
     {
-        DieRoller roller = new DieRoller();
         // 5 x dice
         //Rules:
         //Roll all 5 dice hoping for a 3-of-a-kind or better.
@@ -25,7 +24,7 @@ namespace FrankStancliffeOOP2
         public int[] ThreeOrMore(int[] points) 
         {
             int turn = 0;
-            int[] arrayOfDieRolls = roller.Roll5Die();
+            int[] arrayOfDieRolls = Roll5Die();
             int [] rollOptions = checkForMultiples(arrayOfDieRolls);
             int biggestOfAKind = 0;
             for (int i = 0; i < rollOptions.Length; i++) 
@@ -55,7 +54,7 @@ namespace FrankStancliffeOOP2
                 {
                     Console.WriteLine("ROLL: ");
                     Console.ReadLine();
-                    int[] arrayOfDieRolls = roller.Roll2Die();
+                    int[] arrayOfDieRolls = Roll2Die();
                     int totalRoll = arrayOfDieRolls[0] + arrayOfDieRolls[1];
                     Console.WriteLine("1st Roll: {0}", arrayOfDieRolls[0]);
                     Console.WriteLine("2nd Roll: {0}", arrayOfDieRolls[1]);
@@ -104,5 +103,24 @@ namespace FrankStancliffeOOP2
             }
             return rollOptions;
         }
+
+        public int[] Roll5Die()
+        {
+            DieRoller die1 = new DieRoller();
+            DieRoller die2 = new DieRoller();
+            int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()) };
+            return arrayOfDieRolls;
+        }
+        public int[] Roll2Die()
+        {
+            DieRoller die1 = new DieRoller();
+            DieRoller die2 = new DieRoller();
+            DieRoller die3 = new DieRoller();
+            DieRoller die4 = new DieRoller();
+            DieRoller die5 = new DieRoller();
+            int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()), (die3.Roll()), (die4.Roll()), (die5.Roll()) };
+            return arrayOfDieRolls;
+        }
+
     }
 }

@@ -18,27 +18,11 @@ namespace FrankStancliffeOOP2
         /// rolls a int value between 1 and 6
         /// </summary>
         /// <returns>int between 1 andd 6</returns>
-        private int Roll()
+        public int Roll()
         {
             _rollValue = random.Next(1,7);
             return _rollValue;
         }
-        public int[] Roll5Die()
-        {
-            DieRoller die1 = new DieRoller();
-            DieRoller die2 = new DieRoller();
-            int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()) };
-            return arrayOfDieRolls;
-        }
-        public int[] Roll2Die()
-        {
-            DieRoller die1 = new DieRoller();
-            DieRoller die2 = new DieRoller();
-            DieRoller die3 = new DieRoller();
-            DieRoller die4 = new DieRoller();
-            DieRoller die5 = new DieRoller();
-            int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()), (die3.Roll()), (die4.Roll()), (die5.Roll()) };
-            return arrayOfDieRolls;
-        }
+        
     }
 }
