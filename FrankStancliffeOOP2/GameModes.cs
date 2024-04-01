@@ -8,6 +8,9 @@ using System.Threading.Tasks;
 
 namespace FrankStancliffeOOP2
 {
+    /// <summary>
+    /// this class holds methods representing each game mode
+    /// </summary>
     internal class GameModes
     {
         Roller roller = new Roller();

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FrankStancliffeOOP2
 {
+    /// <summary>
+    /// main / primary program file
+    /// </summary>
     internal class Program
     {
         static void Main(string[] args)

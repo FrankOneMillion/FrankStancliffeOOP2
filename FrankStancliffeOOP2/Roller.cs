@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FrankStancliffeOOP2
 {
+    /// <summary>
+    ///  this class holds methods used to create and roll new die objects
+    /// </summary>
     internal class Roller
     {
         public int[] Roll5Die()

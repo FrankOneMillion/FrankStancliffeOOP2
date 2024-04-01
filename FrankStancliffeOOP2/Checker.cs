@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FrankStancliffeOOP2
 {
+    /// <summary>
+    /// class used to validate user inputs
+    /// </summary>
     internal class Checker
     {
     }

@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace FrankStancliffeOOP2
 {
+    /// <summary>
+    /// class holds ability to create a new die
+    /// </summary>
     internal class Die
     {
         static Random random = new Random();
