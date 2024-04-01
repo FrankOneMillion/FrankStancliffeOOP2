@@ -10,9 +10,15 @@ namespace FrankStancliffeOOP2
     {
         static void Main(string[] args)
         {
+            int play = 1;
+            while (play == 1)
+            {
+
+            }
             GameModes newGame = new GameModes();
             int[] points = { 0, 0 };
             points = newGame.SevensOut(points);
+            Console.ReadLine();
 
 
         }

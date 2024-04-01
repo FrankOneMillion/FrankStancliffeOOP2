@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
 using System.Text;
 using System.Threading.Tasks;
@@ -42,19 +43,21 @@ namespace FrankStancliffeOOP2
         {
             int turn = 0;
             int[] playersTotal = { 0, 0 };
-            for (int i = 0; i>1; i++) 
+            for (int i = 0; i<2; i++) 
             {
-                Console.WriteLine("Player {0}'s Turn :",turn+1);
+                Console.WriteLine("");
+                Console.WriteLine("Player {0}'s Turn :",(turn+1));
                 int check = 0;
                 while (check == 0)
                 {
+                    Console.WriteLine("ROLL: ");
+                    Console.ReadLine();
                     int[] arrayOfDieRolls = roller.Roll2Die();
                     int totalRoll = arrayOfDieRolls[0] + arrayOfDieRolls[1];
                     Console.WriteLine("1st Roll: {0}", arrayOfDieRolls[0]);
                     Console.WriteLine("2nd Roll: {0}", arrayOfDieRolls[1]);
                     Console.WriteLine("Total: {0}", totalRoll);
-                    Console.WriteLine("ROLL: ");
-                    if (totalRoll == 7 || (Console.ReadLine()) == "q")
+                    if (totalRoll == 7 )
                     {
                         check = 1;
                     }
@@ -64,6 +67,7 @@ namespace FrankStancliffeOOP2
                     }
                 }
                 Console.WriteLine("Your Total:{0}",playersTotal[turn]);
+                turn++;
             }
             Console.ReadLine();
             if (playersTotal[0] != playersTotal[1])
@@ -77,7 +81,8 @@ namespace FrankStancliffeOOP2
                 Console.WriteLine("Player {0} Won! ({1}:{2})", (winner + 1), playersTotal[0], playersTotal[1]);
             }
             else {
-                Console.WriteLine("Draw ({0}:{1}) both players gain a point :)", playersTotal[0], playersTotal[1]);
+                points[0]++; points[1]++;
+                Console.WriteLine("Draw ({0}:{1}) both players gain a point :) ", playersTotal[0], playersTotal[1]);
             }
             return points;
         }
