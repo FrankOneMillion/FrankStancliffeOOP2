@@ -58,6 +58,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Checker.cs" />
     <Compile Include="Die.cs" />
     <Compile Include="GameModes.cs" />
     <Compile Include="Program.cs" />
