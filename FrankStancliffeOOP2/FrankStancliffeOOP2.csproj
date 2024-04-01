@@ -58,12 +58,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Checker.cs" />
-    <Compile Include="Die.cs" />
+    <Compile Include="DieRoller.cs" />
     <Compile Include="GameModes.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Roller.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

@@ -13,7 +13,7 @@ namespace FrankStancliffeOOP2
     /// </summary>
     internal class GameModes
     {
-        Roller roller = new Roller();
+        DieRoller roller = new DieRoller();
         // 5 x dice
         //Rules:
         //Roll all 5 dice hoping for a 3-of-a-kind or better.
