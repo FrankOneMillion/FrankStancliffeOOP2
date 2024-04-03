@@ -27,6 +27,7 @@ namespace FrankStancliffeOOP2
             // }
             GameModes newGame = new GameModes();
             int[] points = { 0, 0 };
+            points = newGame.ThreeOrMore(points);
             points = newGame.SevensOut(points);
             Console.ReadLine();
 

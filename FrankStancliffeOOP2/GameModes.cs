@@ -29,6 +29,7 @@ namespace FrankStancliffeOOP2
         /// <returns>array for number of points each player holds</returns>
         public int[] ThreeOrMore(int[] points) 
         {
+            Testing testing = new Testing();
             int turn = 0;
             int rolled = 0;
             while (rolled != 1)
@@ -43,8 +44,8 @@ namespace FrankStancliffeOOP2
                 if (biggestOfAKind != 2) { rolled = 1; }
                 else
                 {
-                    // Console.WriteLine("Hey you rolled 2 of-a-kind would you like to ReRoll?:")
-                    // rolled = checker(["Yes","No"])
+                    string[] arrayChoices = { "Yes", "No" };
+                    rolled = testing.Checker("Hey you rolled 2 of-a-kind would you like to ReRoll?:",arrayChoices);
                 }
             }
             return points;
@@ -113,9 +114,9 @@ namespace FrankStancliffeOOP2
         private int[] checkForMultiples(int[] arrayOfDieRolls) 
         {
             int[] rollOptions = { 0, 0, 0, 0, 0, 0 };
-            for (int i = 0; i < arrayOfDieRolls.Length; i++)
+            for (int i = 0; i < arrayOfDieRolls.Length ; i++)
             {
-                for (int j = 0; i < rollOptions.Length; j++)
+                for (int j = 0; j < rollOptions.Length ; j++)
                 {
                     if (rollOptions[j] == arrayOfDieRolls[i])
                     {
