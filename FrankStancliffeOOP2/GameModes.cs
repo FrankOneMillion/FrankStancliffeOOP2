@@ -126,6 +126,7 @@ namespace FrankStancliffeOOP2
                 points[0]++; points[1]++;
                 Console.WriteLine("Draw ({0}:{1}) both players gain a point :) ", playersTotal[0], playersTotal[1]);
             }
+            Console.ReadLine();
             return points;
         }
 
