@@ -11,6 +11,7 @@ namespace FrankStancliffeOOP2
     /// <summary>
     /// this class holds methods representing each game mode
     /// </summary>
+    
     internal class GameModes
     {
         // 5 x dice
@@ -31,6 +32,7 @@ namespace FrankStancliffeOOP2
         {
             for ( int i2 = 0; i2 < 2; i2++)
             {
+
                 int turn = i2;
                 Console.WriteLine("");
                 Console.WriteLine("Player {0}'s Turn :", (turn + 1));
@@ -71,6 +73,7 @@ namespace FrankStancliffeOOP2
                     }
                 }
             }
+
             return points;
         }  
 
