@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
+using System.Security.Cryptography.X509Certificates;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -40,6 +41,7 @@ namespace FrankStancliffeOOP2
                 int turn = i2;
                 Console.WriteLine("");
                 Console.WriteLine("Player {0}'s Turn :", (turn + 1));
+                Console.ReadLine();
                 Testing testing = new Testing();
                 int[] scores = { 3, 6, 12 };
                 int rolled = 0;
@@ -49,31 +51,25 @@ namespace FrankStancliffeOOP2
                     //
                     foreach (int item in arrayOfDieRolls) { Console.WriteLine(item); }
                     //
-                    int[] rollOptions = checkForMultiples(arrayOfDieRolls);
-                    int[] biggestOfAKind = { 0, 0 };
-                    for (int i = 0; i < rollOptions.Length; i++)
-                    {
-                        if (rollOptions[i] > biggestOfAKind[0])
-                        {
-                            biggestOfAKind[0] = rollOptions[i];
-                            biggestOfAKind[1] = i + 1;
-                        }
-                    }
-                    Console.WriteLine("\nBiggest of a kind {0} {1}s \n", biggestOfAKind[0], biggestOfAKind[1]);
-                    if (biggestOfAKind[0] != 2)
-                    {
-                        rolled = 1;
-                        if (biggestOfAKind[0] > 2)
-                        {
-                            int pointToAdd = scores[(biggestOfAKind[0] - 3)];
-                            gamePoints[turn] += pointToAdd;
-                        }
+                    int[] biggestOfAKind = checkForMultiples(arrayOfDieRolls);
 
-                    }
-                    else
+                    Console.WriteLine("\nBiggest of a kind {0} {1}s \n", biggestOfAKind[0], biggestOfAKind[1]);
+                    if (biggestOfAKind[0] ==2)
                     {
                         string[] arrayChoices = { "Yes", "No" };
-                        rolled = testing.Checker("Hey you rolled 2 of-a-kind would you like to ReRoll?:", arrayChoices);
+                        rolled = testing.Checker("Hey you rolled 2 of-a-kind would you like to ReRoll? the remaining 3 die?:", arrayChoices);
+                        if (rolled != 1) 
+                        {
+                            arrayOfDieRolls = ReRollRemainingDie(arrayOfDieRolls, biggestOfAKind[1]);
+                            biggestOfAKind = checkForMultiples(arrayOfDieRolls);
+                            Console.WriteLine("\n New biggest of a kind {0} {1}s ({2}{3}{4}{5}{6})\n", biggestOfAKind[0], biggestOfAKind[1], arrayOfDieRolls[0], arrayOfDieRolls[1], arrayOfDieRolls[2], arrayOfDieRolls[3], arrayOfDieRolls[4]);
+                        }
+                    }
+                    rolled = 1;
+                    if (biggestOfAKind[0] > 2)
+                    {
+                        int pointToAdd = scores[(biggestOfAKind[0] - 3)];
+                        gamePoints[turn] += pointToAdd;
                     }
                 }
 
@@ -149,7 +145,7 @@ namespace FrankStancliffeOOP2
         /// used in ThreeOrMore class to calculate number of matching / of-a-kind
         /// </summary>
         /// <param name="arrayOfDieRolls">array containing the rolls from the 5 die</param>
-        /// <returns>array for count of each possible roll</returns>
+        /// <returns>array holding int value for the die face found multiple times and how many times </returns>
         private int[] checkForMultiples(int[] arrayOfDieRolls) 
         {
             int[] rollOptions = { 0, 0, 0, 0, 0, 0 }; // to hold number of times each die side has been rolled, int for each face
@@ -164,17 +160,16 @@ namespace FrankStancliffeOOP2
                     }
                 }
             }
-
-            // used during testing / debug
-
-            //Console.Write("\n");
-            //foreach(int i in rollOptions)
-            // {
-            //   Console.Write(i);
-            // }
-            //Console.Write("\n");
-
-           return rollOptions;
+            int[] biggestOfAKind = { 0, 0 };
+            for (int i = 0; i < rollOptions.Length; i++)
+            {
+                if (rollOptions[i] > biggestOfAKind[0])
+                {
+                    biggestOfAKind[0] = rollOptions[i];
+                    biggestOfAKind[1] = i + 1;
+                }
+            }
+            return biggestOfAKind;
         }
         /// <summary>
         /// creates 2 new die objects and rolls them
@@ -200,6 +195,18 @@ namespace FrankStancliffeOOP2
             DieRoller die4 = new DieRoller();
             DieRoller die5 = new DieRoller();
             int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()), (die3.Roll()), (die4.Roll()), (die5.Roll()) };
+            return arrayOfDieRolls;
+        }
+
+        public int[] ReRollRemainingDie(int[] arrayOfDieRolls,int repeatedDie) 
+        {
+            DieRoller die = new DieRoller();
+            int counter = 0;
+            foreach (int dieRoll in arrayOfDieRolls) 
+            { 
+                if (dieRoll != repeatedDie) { arrayOfDieRolls[counter]=die.Roll(); }
+                counter++;
+            }
             return arrayOfDieRolls;
         }
 
