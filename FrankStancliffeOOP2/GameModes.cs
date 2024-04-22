@@ -30,8 +30,12 @@ namespace FrankStancliffeOOP2
         /// <returns>array for number of points each player holds</returns>
         public int[] ThreeOrMore(int[] points)
         {
-            for ( int i2 = 0; i2 < 2; i2++)
+            int[] turns = {0,0};
+            int[] gamePoints = { 0, 0 };
+            for ( int i2 = 0; i2 < 3; i2++)
             {
+                if (i2 == 2) { i2 = 0; }
+                turns[i2]++;
 
                 int turn = i2;
                 Console.WriteLine("");
@@ -62,7 +66,7 @@ namespace FrankStancliffeOOP2
                         if (biggestOfAKind[0] > 2)
                         {
                             int pointToAdd = scores[(biggestOfAKind[0] - 3)];
-                            points[turn] += pointToAdd;
+                            gamePoints[turn] += pointToAdd;
                         }
 
                     }
@@ -72,8 +76,16 @@ namespace FrankStancliffeOOP2
                         rolled = testing.Checker("Hey you rolled 2 of-a-kind would you like to ReRoll?:", arrayChoices);
                     }
                 }
-            }
 
+                if (gamePoints[turn] > 19) {
+                    int otherPlayerTurn = 0;
+                    if (turn == 0) { otherPlayerTurn = 1; }
+                    Console.WriteLine("Player {0} Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
+                    Console.WriteLine("Player {0} rolled {1} in {2} turns \n", otherPlayerTurn + 1, gamePoints[otherPlayerTurn], turns[otherPlayerTurn]);
+                    points[turn]++;
+                    i2 = 4;
+                }
+            }
             return points;
         }  
 
