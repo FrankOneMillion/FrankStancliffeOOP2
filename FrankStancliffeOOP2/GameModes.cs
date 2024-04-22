@@ -54,16 +54,17 @@ namespace FrankStancliffeOOP2
                     int[] biggestOfAKind = checkForMultiples(arrayOfDieRolls);
 
                     Console.WriteLine("\nBiggest of a kind {0} {1}s \n", biggestOfAKind[0], biggestOfAKind[1]);
-                    if (biggestOfAKind[0] ==2)
+                    if (biggestOfAKind[0] == 2)
                     {
-                        string[] arrayChoices = { "Yes", "No" };
-                        rolled = testing.Checker("Hey you rolled 2 of-a-kind would you like to ReRoll? the remaining 3 die?:", arrayChoices);
-                        if (rolled != 1) 
+                        string[] arrayChoices = { "Re-Roll All", "Re-Roll Remaining 3 Die" };
+                        int reRollAll = testing.Checker("Rolled 2 of-a-kind, ReRoll all or just the other remaining 3 die?:", arrayChoices);
+                        if (reRollAll == 1)
                         {
                             arrayOfDieRolls = ReRollRemainingDie(arrayOfDieRolls, biggestOfAKind[1]);
-                            biggestOfAKind = checkForMultiples(arrayOfDieRolls);
-                            Console.WriteLine("\n New biggest of a kind {0} {1}s ({2}{3}{4}{5}{6})\n", biggestOfAKind[0], biggestOfAKind[1], arrayOfDieRolls[0], arrayOfDieRolls[1], arrayOfDieRolls[2], arrayOfDieRolls[3], arrayOfDieRolls[4]);
                         }
+                        else { arrayOfDieRolls = Roll5Die(); }
+                        biggestOfAKind = checkForMultiples(arrayOfDieRolls);
+                        Console.WriteLine("\n New biggest of a kind {0} {1}s ({2}{3}{4}{5}{6})\n", biggestOfAKind[0], biggestOfAKind[1], arrayOfDieRolls[0], arrayOfDieRolls[1], arrayOfDieRolls[2], arrayOfDieRolls[3], arrayOfDieRolls[4]);
                     }
                     rolled = 1;
                     if (biggestOfAKind[0] > 2)
