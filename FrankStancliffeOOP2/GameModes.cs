@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics.Eventing.Reader;
 using System.Linq;
 using System.Reflection;
 using System.Runtime.InteropServices.ComTypes;
@@ -29,7 +30,7 @@ namespace FrankStancliffeOOP2
         /// </summary>
         /// <param name="points">array holding int values for each players current point count</param>
         /// <returns>array for number of points each player holds</returns>
-        public int[] ThreeOrMore(int[] points)
+        public int[] ThreeOrMore(int[] points, int partnerChoice)
         {
             int[] turns = {0,0};
             int[] gamePoints = { 0, 0 };
@@ -40,8 +41,8 @@ namespace FrankStancliffeOOP2
 
                 int turn = i2;
                 Console.WriteLine("");
-                Console.WriteLine("Player {0}'s Turn :", (turn + 1));
-                Console.ReadLine();
+                if (partnerChoice == 1 && turn == 1) { Console.WriteLine("Computers Turn"); }
+                else { Console.WriteLine("Player {0}'s Turn :", (turn + 1)); Console.ReadLine(); }
                 Testing testing = new Testing();
                 int[] scores = { 3, 6, 12 };
                 int rolled = 0;
@@ -56,8 +57,13 @@ namespace FrankStancliffeOOP2
                     Console.WriteLine("\nBiggest of a kind {0} {1}s \n", biggestOfAKind[0], biggestOfAKind[1]);
                     if (biggestOfAKind[0] == 2)
                     {
-                        string[] arrayChoices = { "Re-Roll All", "Re-Roll Remaining 3 Die" };
-                        int reRollAll = testing.Checker("Rolled 2 of-a-kind, ReRoll all or just the other remaining 3 die?:", arrayChoices);
+                        int reRollAll = 0;
+                        if (partnerChoice == 1 && turn == 1) { Console.WriteLine("Computer ReRolled Remaining Die"); reRollAll = 1; }
+                        else
+                        {
+                            string[] arrayChoices = { "Re-Roll All", "Re-Roll Remaining 3 Die" };
+                            reRollAll = testing.Checker("Rolled 2 of-a-kind, ReRoll all or just the other remaining 3 die?:", arrayChoices);
+                        }
                         if (reRollAll == 1)
                         {
                             arrayOfDieRolls = ReRollRemainingDie(arrayOfDieRolls, biggestOfAKind[1]);
@@ -66,7 +72,7 @@ namespace FrankStancliffeOOP2
                         biggestOfAKind = checkForMultiples(arrayOfDieRolls);
                         Console.WriteLine("\n New biggest of a kind {0} {1}s ({2}{3}{4}{5}{6})\n", biggestOfAKind[0], biggestOfAKind[1], arrayOfDieRolls[0], arrayOfDieRolls[1], arrayOfDieRolls[2], arrayOfDieRolls[3], arrayOfDieRolls[4]);
                     }
-                    rolled = 1;
+                    rolled = 1; 
                     if (biggestOfAKind[0] > 2)
                     {
                         int pointToAdd = scores[(biggestOfAKind[0] - 3)];
@@ -76,9 +82,20 @@ namespace FrankStancliffeOOP2
 
                 if (gamePoints[turn] > 19) {
                     int otherPlayerTurn = 0;
-                    if (turn == 0) { otherPlayerTurn = 1; }
-                    Console.WriteLine("Player {0} Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
-                    Console.WriteLine("Player {0} rolled {1} in {2} turns \n", otherPlayerTurn + 1, gamePoints[otherPlayerTurn], turns[otherPlayerTurn]);
+                    if (turn == 1 && partnerChoice == 1) {
+                        Console.WriteLine("Computer Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
+                        Console.WriteLine("Player {0} rolled {1} in {2} turns \n", 1, gamePoints[0], turns[0]);
+                    }
+                    else
+                    {
+                        if (turn == 0) { otherPlayerTurn = 1; }
+                        Console.WriteLine("Player {0} Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
+                        if (partnerChoice == 0)
+                        {
+                            Console.WriteLine("Player {0} rolled {1} in {2} turns \n", otherPlayerTurn + 1, gamePoints[otherPlayerTurn], turns[otherPlayerTurn]);
+                        }
+                        else { Console.WriteLine("Computer rolled {1} in {2} turns \n", otherPlayerTurn + 1, gamePoints[otherPlayerTurn], turns[otherPlayerTurn]); }
+                    }
                     points[turn]++;
                     i2 = 4;
                 }
@@ -93,19 +110,20 @@ namespace FrankStancliffeOOP2
         //	If it is any other number - add it to your total.
         //		If it is a double - add double the total to your score (3,3 would add 12 to your total)
 
-        public int[] SevensOut(int[] points) 
+        public int[] SevensOut(int[] points, int partnerChoice) 
         {
             int turn = 0;
             int[] playersTotal = { 0, 0 };
             for (int i = 0; i<2; i++) 
             {
                 Console.WriteLine("");
-                Console.WriteLine("Player {0}'s Turn :",(turn+1));
+                if (partnerChoice == 1 && i == 1) { Console.WriteLine("Computer Turn:"); }
+                else { Console.WriteLine("Player {0}'s Turn :", (turn + 1)); }
                 int check = 0;
                 while (check == 0)
                 {
-                    Console.WriteLine("ROLL: ");
-                    Console.ReadLine();
+                    if (partnerChoice == 1 && i == 1) { Console.WriteLine(" COMPUTER ROLL: "); }
+                    else { Console.WriteLine("ROLL: "); Console.ReadLine(); }
                     int[] arrayOfDieRolls = Roll2Die();
                     int totalRoll = arrayOfDieRolls[0] + arrayOfDieRolls[1];
                     Console.WriteLine("1st Roll: {0}", arrayOfDieRolls[0]);
@@ -123,7 +141,7 @@ namespace FrankStancliffeOOP2
                 Console.WriteLine("Your Total:{0}",playersTotal[turn]);
                 turn++;
             }
-            Console.ReadLine();
+            Console.WriteLine();
             if (playersTotal[0] != playersTotal[1])
             {
                 int winner = 0;
@@ -132,7 +150,8 @@ namespace FrankStancliffeOOP2
                     winner = 1;
                 }
                 points[winner]++;
-                Console.WriteLine("Player {0} Won! ({1}:{2})", (winner + 1), playersTotal[0], playersTotal[1]);
+                if (winner == 1) { Console.WriteLine("Computer Won! ({0}:{1})", playersTotal[0], playersTotal[1]); }
+                else { Console.WriteLine("Player {0} Won! ({1}:{2})", (winner + 1), playersTotal[0], playersTotal[1]); }
             }
             else {
                 points[0]++; points[1]++;

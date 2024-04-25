@@ -26,8 +26,8 @@ namespace FrankStancliffeOOP2
                 Console.WriteLine("Current Points: {0},{1}", points[0], points[1]);
                 arrayChoices = new string[] { "Three Or More", "Sevens Out", "Quit from program" };
                 gameChoice = testing.Checker("Would you like to play ", arrayChoices);
-                if (gameChoice == 0) { points = newGame.ThreeOrMore(points); }
-                if (gameChoice == 1) { points = newGame.SevensOut(points); }
+                if (gameChoice == 0) { points = newGame.ThreeOrMore(points, partnerChoice); }
+                if (gameChoice == 1) { points = newGame.SevensOut(points, partnerChoice); }
             }
         }
     }
