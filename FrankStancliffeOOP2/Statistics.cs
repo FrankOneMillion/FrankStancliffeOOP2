@@ -39,7 +39,7 @@ namespace FrankStancliffeOOP2
             }
         public void readTextFile()
         {
-            dataFromTextFile = CreatingAnArray("TextFile1.txt");
+            dataFromTextFile = CreatingAnArray("StoredValues.txt");
             highScore = dataFromTextFile[0];
             counter = dataFromTextFile[1];
             Console.WriteLine("{0}{1}",counter,highScore);
