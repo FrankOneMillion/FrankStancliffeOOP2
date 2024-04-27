@@ -1,3 +1,12 @@
-﻿23
-44
-55
+// Highest Sevens Out Score
+0
+// Sevens Out Plays
+0
+// Highest Three Or More Score
+0
+// Three Or More Plays
+0
+// Player One Wins (Individual Games)
+0
+// Player Two / Computer Wins (Individual Games)
+0

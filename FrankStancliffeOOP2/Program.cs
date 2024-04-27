@@ -14,8 +14,11 @@ namespace FrankStancliffeOOP2
     {
         static void Main(string[] args)
         {
+            Statistics statistics = new Statistics();
             Testing testing = new Testing();
             GameModes newGame = new GameModes();
+            statistics.readTextFile();
+
 
             string[] arrayChoices ={ "Partner", "Computer" };
             int partnerChoice = testing.Checker("Play with partner(on the same computer), or against the computer.", arrayChoices);
@@ -29,6 +32,7 @@ namespace FrankStancliffeOOP2
                 if (gameChoice == 0) { points = newGame.ThreeOrMore(points, partnerChoice); }
                 if (gameChoice == 1) { points = newGame.SevensOut(points, partnerChoice); }
             }
+            statistics.writeTextFile();
         }
     }
 }
