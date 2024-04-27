@@ -13,9 +13,13 @@ namespace FrankStancliffeOOP2
     /// <summary>
     /// this class holds methods representing each game mode
     /// </summary>
-    
     internal class GameModes
     {
+        private Statistics statistics;
+        public GameModes(Statistics statistics)
+        {
+            this.statistics = statistics;
+        }
         // 5 x dice
         //Rules:
         //Roll all 5 dice hoping for a 3-of-a-kind or better.
@@ -82,6 +86,7 @@ namespace FrankStancliffeOOP2
 
                 if (gamePoints[turn] > 19) {
                     int otherPlayerTurn = 0;
+                    //Statistics.numberofplays.playerWin(turn);
                     if (turn == 1 && partnerChoice == 1) {
                         Console.WriteLine("Computer Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
                         Console.WriteLine("Player {0} rolled {1} in {2} turns \n", 1, gamePoints[0], turns[0]);
@@ -89,6 +94,7 @@ namespace FrankStancliffeOOP2
                     else
                     {
                         if (turn == 0) { otherPlayerTurn = 1; }
+                        points[2] = gamePoints[turn];
                         Console.WriteLine("Player {0} Won! they rolled a total of {1} in {2} turns", turn + 1, gamePoints[turn], turns[turn]);
                         if (partnerChoice == 0)
                         {
@@ -143,13 +149,14 @@ namespace FrankStancliffeOOP2
             }
             Console.WriteLine();
             if (playersTotal[0] != playersTotal[1])
-            {
+            { 
                 int winner = 0;
                 if (playersTotal[0] < playersTotal[1])
                 {
                     winner = 1;
                 }
                 points[winner]++;
+                points[2] = playersTotal[winner];
                 if (winner == 1) { Console.WriteLine("Computer Won! ({0}:{1})", playersTotal[0], playersTotal[1]); }
                 else { Console.WriteLine("Player {0} Won! ({1}:{2})", (winner + 1), playersTotal[0], playersTotal[1]); }
             }
