@@ -173,7 +173,7 @@ namespace FrankStancliffeOOP2
         /// </summary>
         /// <param name="arrayOfDieRolls">array containing the rolls from the 5 die</param>
         /// <returns>array holding int value for the die face found multiple times and how many times </returns>
-        private int[] checkForMultiples(int[] arrayOfDieRolls) 
+        public int[] checkForMultiples(int[] arrayOfDieRolls) 
         {
             int[] rollOptions = { 0, 0, 0, 0, 0, 0 }; // to hold number of times each die side has been rolled, int for each face
 

@@ -23,8 +23,6 @@ namespace FrankStancliffeOOP2
             Testing testing = new Testing();
             statistics.readTextFile();
             
-
-
             string[] arrayChoices ={ "Partner", "Computer" };
             int partnerChoice = testing.Checker("Play with partner(on the same computer), or against the computer.", arrayChoices);
             int[] points = { 0, 0, 0 };
