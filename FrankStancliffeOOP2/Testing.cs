@@ -47,14 +47,14 @@ namespace FrankStancliffeOOP2
             Statistics statistics = new Statistics();
             Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics);
             GameModes newGame = new GameModes(statistics);
-            Testing testing = new Testing();
             statistics.readTextFile();
             TestingDie();
             Console.WriteLine("Testing die methods from GameModes class complete");
+            TestingIncreasingPlayCounter();
+            Console.WriteLine("Testing for increasing play counter complete");
 
             string[] arrayChoices = { "Partner", "Computer" };
-            int partnerChoice = testing.Checker("Play with partner(on the same computer), or against the computer.", arrayChoices);
-            TestingCheckerMethod(partnerChoice, arrayChoices);
+            TestingCheckerMethod();
 
             int[] points = { 0, 0, 0 };
             int gameChoice = 0;
@@ -69,17 +69,24 @@ namespace FrankStancliffeOOP2
             }
             for (int i = 0; i < 2; i++) { for (int i2 = points[i]; i2 != 0; i2--) { playsCounter.playerWinCounter(i); } }
         }
-        private void TestingCheckerMethod(int choice, string[] arrayChoices) { Debug.Assert((choice < ( arrayChoices.Length)), "Choice value from Checker was above expected range (positions in array)"); }
+        private void TestingCheckerMethod() 
+        {
+            Testing testing = new Testing();
+            string[] arrayChoices = { "Option 0", "Option 1","Option 2" };
+            Debug.Assert((testing.Checker("Test Options ", arrayChoices) < (arrayChoices.Length)), "Choice value from Checker was above expected range (positions in array)"); 
+        }
         private void TestingPoints(int[] points) { }
         private void TestingGame(int[] points) { }
-        private void TestingReadTextFile() { Statistics statistics = new Statistics(); Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics); ; playsCounter.increasePlayCounter(7); }
-        public int highScoreSevensOut = 0;
-        public int highScoreThreeOrMore = 0;
-        public int sevensOutPlays = 0;
-        public int threeOrMorePlays = 0;
-        public int playerOneWins = 0;
-        public int playerTwoWins = 0;
-        private void TestingDie() { Statistics statistics = new Statistics();  GameModes newGame = new GameModes(statistics); int[]fiveDieArray=newGame.Roll5Die(); int[]twoDieArray=newGame.Roll2Die();
+        private void TestingIncreasingPlayCounter()
+        {
+            Statistics statistics = new Statistics();
+            Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics);
+            int oldInt = playsCounter.threeOrMorePlays;
+            playsCounter.increasePlayCounter(7);
+            Debug.Assert((playsCounter.threeOrMorePlays == oldInt),"increasePlayCounter did not increase the play counter");
+        }
+
+        private void TestingDie() { Statistics statistics = new Statistics(); GameModes newGame = new GameModes(statistics); int[] fiveDieArray = newGame.Roll5Die(); int[] twoDieArray = newGame.Roll2Die();
             int counter = 0;
             foreach (int die in fiveDieArray) { counter++; Debug.Assert((7 > die && die > 0), "a die rolled outside of expected range (1-6) from Roll5Die()"); }
             Debug.Assert((counter != (5)), "Five Die were not rolled from Roll5Die()");
