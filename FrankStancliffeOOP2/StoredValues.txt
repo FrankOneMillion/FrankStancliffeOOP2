@@ -1,12 +1,12 @@
 // Highest Sevens Out Score
 189
 // Sevens Out Plays
-29
+34
 // Highest Three Or More Score
 175
 // Three Or More Plays
-6
+8
 // Player One Wins (Individual Games)
-3
+6
 // Player Two / Computer Wins (Individual Games)
-1
+5

@@ -14,10 +14,13 @@ namespace FrankStancliffeOOP2
     {
         static void Main(string[] args)
         {
+            Testing testingObject = new Testing();
+            testingObject.TestProgram();
+
             Statistics statistics = new Statistics();
             Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics);
-            Testing testing = new Testing();
             GameModes newGame = new GameModes(statistics);
+            Testing testing = new Testing();
             statistics.readTextFile();
             
 
@@ -36,7 +39,7 @@ namespace FrankStancliffeOOP2
             }
             for (int i = 0; i<2; i++) { for (int i2 = points[i];i2!=0;i2--) { playsCounter.playerWinCounter(i);Console.WriteLine("HEY it went up"); } }
             statistics.writeTextFile();
-            Console.ReadLine();
+            //Console.ReadLine();
         }
     }
 }
