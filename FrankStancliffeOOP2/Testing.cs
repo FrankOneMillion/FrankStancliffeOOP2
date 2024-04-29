@@ -42,6 +42,9 @@ namespace FrankStancliffeOOP2
 
             return returnPoison;
         }
+        /// <summary>
+        /// runs basic tests that cover different methods within classes used throught my program
+        /// </summary>
         public void TestProgram() {
             TestingDie();
             TestingIncreasingPlayCounter();
@@ -49,6 +52,9 @@ namespace FrankStancliffeOOP2
             TestingMultipleChecker();
             Console.WriteLine("");
         }
+        /// <summary>
+        /// tests the Checker() method from the testing class, and that its returned intager is within the expected range
+        /// </summary>
         private void TestingCheckerMethod() 
         {
             Testing testing = new Testing();
@@ -56,7 +62,9 @@ namespace FrankStancliffeOOP2
             Debug.Assert((testing.Checker("Test Options ", arrayChoices) < (arrayChoices.Length)), "Choice value from Checker was above expected range (positions in array)");
             Console.WriteLine("Testing Checker Method Complete");
         }
-        private void TestingPoints(int[] points) { }
+        /// <summary>
+        /// tests the checkForMultiples() method from the GameModes class
+        /// </summary>
         private void TestingMultipleChecker() 
         {
             Statistics statistics = new Statistics();
@@ -68,16 +76,21 @@ namespace FrankStancliffeOOP2
             Console.WriteLine("Testing check for multiples method complete");
             
         }
+        /// <summary>
+        /// tests that after using increasePlayCounter method, that the value for threeOrMorePlays increments
+        /// </summary>
         private void TestingIncreasingPlayCounter()
         {
             Statistics statistics = new Statistics();
             Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics);
             int oldInt = playsCounter.threeOrMorePlays;
-            playsCounter.increasePlayCounter(7);
+            playsCounter.increasePlayCounter(3);
             Debug.Assert((playsCounter.threeOrMorePlays == oldInt),"increasePlayCounter did not increase the play counter");
             Console.WriteLine("Testing for increasing play counter complete");
         }
-
+        /// <summary>
+        /// tests both the Roll5Die and Roll2Die Methods from the GameMode class
+        /// </summary>
         private void TestingDie() { 
             Statistics statistics = new Statistics(); 
             GameModes newGame = new GameModes(statistics); 
