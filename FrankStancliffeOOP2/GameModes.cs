@@ -20,6 +20,8 @@ namespace FrankStancliffeOOP2
         {
             this.statistics = statistics;
         }
+
+        // RULES FOR REFERENCE 
         // 5 x dice
         //Rules:
         //Roll all 5 dice hoping for a 3-of-a-kind or better.
@@ -28,6 +30,7 @@ namespace FrankStancliffeOOP2
         //	4-of-a-kind: 6 points
         //	5-of-a-kind: 12 points
         //    First to a total of 20.
+
 
         /// <summary>
         /// rolls 5 die for each player, finds the biggest nu 
@@ -109,6 +112,7 @@ namespace FrankStancliffeOOP2
             return points;
         }  
 
+        // RULES FOR REFERENCE
         //2 x dice
         //Rules:
         //Roll the two dice, noting the total rolled each time.
@@ -116,11 +120,17 @@ namespace FrankStancliffeOOP2
         //	If it is any other number - add it to your total.
         //		If it is a double - add double the total to your score (3,3 would add 12 to your total)
 
+        /// <summary>
+        /// holds the methods and main bulk of code for the SevensOut gamemode
+        /// </summary>
+        /// <param name="points"> this value also returned, holding values for both player points in addition to the winning score</param>
+        /// <param name="partnerChoice"> whether the user chose to play against another user or the program / computer</param>
+        /// <returns></returns>
         public int[] SevensOut(int[] points, int partnerChoice) 
         {
             int turn = 0;
             int[] playersTotal = { 0, 0 };
-            for (int i = 0; i<2; i++) 
+            for (int i = 0; i<2; i++)
             {
                 Console.WriteLine("");
                 if (partnerChoice == 1 && i == 1) { Console.WriteLine("Computer Turn:"); }
@@ -224,14 +234,19 @@ namespace FrankStancliffeOOP2
             int[] arrayOfDieRolls = { (die1.Roll()), (die2.Roll()), (die3.Roll()), (die4.Roll()), (die5.Roll()) };
             return arrayOfDieRolls;
         }
-
+        /// <summary>
+        /// this method allows the user to choose to only reroll remaining die rather than them all after rolling 2 of the same kind
+        /// </summary>
+        /// <param name="arrayOfDieRolls">an array of int values repersenting each dies value</param>
+        /// <param name="repeatedDie">which value has been represted twice</param>
+        /// <returns></returns>
         public int[] ReRollRemainingDie(int[] arrayOfDieRolls,int repeatedDie) 
         {
             DieRoller die = new DieRoller();
             int counter = 0;
             foreach (int dieRoll in arrayOfDieRolls) 
             { 
-                if (dieRoll != repeatedDie) { arrayOfDieRolls[counter]=die.Roll(); }
+                if (dieRoll != repeatedDie) { arrayOfDieRolls[counter]=die.Roll(); }// rerolls die that are not equal to the repeated die int
                 counter++;
             }
             return arrayOfDieRolls;
