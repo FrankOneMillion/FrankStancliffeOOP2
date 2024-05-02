@@ -43,7 +43,7 @@ namespace FrankStancliffeOOP2
             int[] gamePoints = { 0, 0 };
             for ( int i2 = 0; i2 < 3; i2++)
             {
-                if (i2 == 2) { i2 = 0; }
+                if (i2 == 2) { i2 = 0; } // esnures a loop while keeping value betweeen 0 and 1
                 turns[i2]++;
 
                 int turn = i2;
@@ -51,7 +51,7 @@ namespace FrankStancliffeOOP2
                 if (partnerChoice == 1 && turn == 1) { Console.WriteLine("Computers Turn"); }
                 else { Console.WriteLine("Player {0}'s Turn :", (turn + 1)); Console.ReadLine(); }
                 Testing testing = new Testing();
-                int[] scores = { 3, 6, 12 };
+                int[] scores = { 3, 6, 12 }; // scores to be added dependant 3,4,5 repeated die
                 int rolled = 0;
                 while (rolled != 1)
                 {
@@ -59,7 +59,7 @@ namespace FrankStancliffeOOP2
                     //
                     foreach (int item in arrayOfDieRolls) { Console.WriteLine(item); }
                     //
-                    int[] biggestOfAKind = checkForMultiples(arrayOfDieRolls);
+                    int[] biggestOfAKind = checkForMultiples(arrayOfDieRolls); // checks for any matching values, should return most common match
 
                     Console.WriteLine("\nBiggest of a kind {0} {1}s \n", biggestOfAKind[0], biggestOfAKind[1]);
                     if (biggestOfAKind[0] == 2)
@@ -73,14 +73,14 @@ namespace FrankStancliffeOOP2
                         }
                         if (reRollAll == 1)
                         {
-                            arrayOfDieRolls = ReRollRemainingDie(arrayOfDieRolls, biggestOfAKind[1]);
-                        }
+                            arrayOfDieRolls = ReRollRemainingDie(arrayOfDieRolls, biggestOfAKind[1]); // method accepts the array of die and the value of the repeated die 
+                        }   // then re rolls all die not equaal to the value of original repeated die
                         else { arrayOfDieRolls = Roll5Die(); }
                         biggestOfAKind = checkForMultiples(arrayOfDieRolls);
                         Console.WriteLine("\n New biggest of a kind {0} {1}s ({2}{3}{4}{5}{6})\n", biggestOfAKind[0], biggestOfAKind[1], arrayOfDieRolls[0], arrayOfDieRolls[1], arrayOfDieRolls[2], arrayOfDieRolls[3], arrayOfDieRolls[4]);
                     }
                     rolled = 1; 
-                    if (biggestOfAKind[0] > 2)
+                    if (biggestOfAKind[0] > 2) // to ensure error not encountered if biggest of kind[0] is less than 2 (cause negative position)
                     {
                         int pointToAdd = scores[(biggestOfAKind[0] - 3)];
                         gamePoints[turn] += pointToAdd;
@@ -130,7 +130,7 @@ namespace FrankStancliffeOOP2
         {
             int turn = 0;
             int[] playersTotal = { 0, 0 };
-            for (int i = 0; i<2; i++)
+            for (int i = 0; i<2; i++) // loop for players turns
             {
                 Console.WriteLine("");
                 if (partnerChoice == 1 && i == 1) { Console.WriteLine("Computer Turn:"); }
@@ -147,7 +147,7 @@ namespace FrankStancliffeOOP2
                     Console.WriteLine("Total: {0}", totalRoll);
                     if (totalRoll == 7 )
                     {
-                        check = 1;
+                        check = 1; // breaks / ends loop for players turn
                     }
                     else
                     {

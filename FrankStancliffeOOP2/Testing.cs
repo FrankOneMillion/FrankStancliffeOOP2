@@ -17,7 +17,7 @@ namespace FrankStancliffeOOP2
         public int Checker(string question, string[] arrayOfStringOptions)
         {
             int returnPoison = 0;
-            List<string> possibleInputs = new List<string> { };
+            List<string> possibleInputs = new List<string> { }; // usuing a list allows for easier addition of data comared to an array which would need resizing.
             for (int i = 0; i < arrayOfStringOptions.Length; i++)
             {
                 possibleInputs.Add(i.ToString());
@@ -37,7 +37,7 @@ namespace FrankStancliffeOOP2
                         checkVar = 1; returnPoison = i; break;
                     }
                 }
-                if (checkVar != 1) { Console.WriteLine("Hey, i didnt expect that answer :( please try again \n "); }
+                if (checkVar != 1) { Console.WriteLine("Hey, i didnt expect that answer :( please try again \n "); } // catch potential user error
             }
 
             return returnPoison;
@@ -45,7 +45,7 @@ namespace FrankStancliffeOOP2
         /// <summary>
         /// runs basic tests that cover different methods within classes used throught my program
         /// </summary>
-        public void TestProgram() {
+        public void TestProgram() { 
             TestingDie();
             TestingIncreasingPlayCounter();
             TestingCheckerMethod();
@@ -84,7 +84,7 @@ namespace FrankStancliffeOOP2
             Statistics statistics = new Statistics();
             Statistics.numberofplays playsCounter = new Statistics.numberofplays(statistics);
             int oldInt = playsCounter.threeOrMorePlays;
-            playsCounter.increasePlayCounter(3);
+            playsCounter.increasePlayCounter(3); // repreenging three or more game :)
             Debug.Assert((playsCounter.threeOrMorePlays == oldInt),"increasePlayCounter did not increase the play counter");
             Console.WriteLine("Testing for increasing play counter complete");
         }
