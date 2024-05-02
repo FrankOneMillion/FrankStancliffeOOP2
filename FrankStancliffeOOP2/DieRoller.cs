@@ -17,7 +17,7 @@ namespace FrankStancliffeOOP2
         /// <summary>
         /// rolls a int value between 1 and 6
         /// </summary>
-        /// <returns>int between 1 andd 6</returns>
+        /// <returns>int between 1 and 6</returns>
         public int Roll()
         {
             _rollValue = random.Next(1,7);
