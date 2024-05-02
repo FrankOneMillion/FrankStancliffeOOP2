@@ -87,7 +87,7 @@ namespace FrankStancliffeOOP2
                     }
                 }
 
-                if (gamePoints[turn] > 19) {
+                if (gamePoints[turn] > 19) {// When Total >=20
                     int otherPlayerTurn = 0;
                     //Statistics.numberofplays.playerWin(turn);
                     if (turn == 1 && partnerChoice == 1) {
@@ -128,6 +128,7 @@ namespace FrankStancliffeOOP2
         /// <returns></returns>
         public int[] SevensOut(int[] points, int partnerChoice) 
         {
+            Testing testing = new Testing();
             int turn = 0;
             int[] playersTotal = { 0, 0 };
             for (int i = 0; i<2; i++) // loop for players turns
@@ -140,11 +141,16 @@ namespace FrankStancliffeOOP2
                 {
                     if (partnerChoice == 1 && i == 1) { Console.WriteLine(" COMPUTER ROLL: "); }
                     else { Console.WriteLine("ROLL: "); Console.ReadLine(); }
+
                     int[] arrayOfDieRolls = Roll2Die();
+
                     int totalRoll = arrayOfDieRolls[0] + arrayOfDieRolls[1];
                     Console.WriteLine("1st Roll: {0}", arrayOfDieRolls[0]);
                     Console.WriteLine("2nd Roll: {0}", arrayOfDieRolls[1]);
                     Console.WriteLine("Total: {0}", totalRoll);
+
+                    testing.DoesItAdd(arrayOfDieRolls,totalRoll);
+
                     if (totalRoll == 7 )
                     {
                         check = 1; // breaks / ends loop for players turn

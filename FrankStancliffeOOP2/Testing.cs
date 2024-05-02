@@ -42,6 +42,7 @@ namespace FrankStancliffeOOP2
 
             return returnPoison;
         }
+        public void DoesItAdd(int[] dieArray, int totalSum) { int counter = 0; foreach (int die in dieArray) { counter += die; } ;Debug.Assert(totalSum == counter); }
         /// <summary>
         /// runs basic tests that cover different methods within classes used throught my program
         /// </summary>
